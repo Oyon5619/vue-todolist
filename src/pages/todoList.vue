@@ -12,6 +12,9 @@ const keyword = ref("");
 const selectedIds = computed(() => {
   return todos.value.filter(({ checked }) => checked).map(({ id }) => id);
 });
+const finishedIds = computed(() => {
+  return todos.value.filter(({ isFinish }) => isFinish).map(({ id }) => id);
+});
 
 const statistic = computed(() => {
   const finishedCount = todos.value.filter(({ isFinish }) => isFinish).length;
@@ -69,8 +72,16 @@ const handleBatchDelete = () => {
   todos.value = todos.value.filter(({ id }) => !selectedIds.value.includes(id));
 };
 
+const handleDeleteFinished = () => {
+  todos.value = todos.value.filter(({ id }) => !finishedIds.value.includes(id));
+};
+
 const handleDeleteAll = () => {
   todos.value = [];
+};
+
+const handleKeywordClear = () => {
+  keyword.value = "";
 };
 </script>
 
@@ -92,7 +103,7 @@ const handleDeleteAll = () => {
           placeholder="输入历史待办..."
           style="width: 18rem"
         />
-        <n-button>清空</n-button>
+        <n-button @click="handleKeywordClear">清空</n-button>
       </n-flex>
       <n-flex justify="center">
         <n-button type="primary" @click="handleAdd">新增</n-button>
@@ -108,7 +119,12 @@ const handleDeleteAll = () => {
           @click="handleBatchDelete"
           >删除选中</n-button
         >
-        <n-button type="warning">删除已完成</n-button>
+        <n-button
+          type="warning"
+          :disabled="!finishedIds.length"
+          @click="handleDeleteFinished"
+          >删除已完成</n-button
+        >
       </n-flex>
       <n-flex justify="center">
         <div>已完成：{{ statistic.finishedCount }}</div>
