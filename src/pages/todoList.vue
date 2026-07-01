@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { TodoItem } from "@/types/todoItem";
-import { computed, ref, watchEffect } from "vue";
+import { computed, ref } from "vue";
 import { v4 } from "uuid";
 import { NInput, NButton, NSpace, NFlex } from "naive-ui";
 import logoImg from "@/assets/vue.svg";
@@ -72,11 +72,6 @@ const handleBatchDelete = () => {
 const handleDeleteAll = () => {
   todos.value = [];
 };
-
-watchEffect(() => {
-  console.log("displayTodos", todos.value);
-  localStorage.setItem("todoList", JSON.stringify(todos.value));
-});
 </script>
 
 <template>
