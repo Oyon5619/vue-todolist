@@ -8,7 +8,7 @@ const handleClick = () => {
 </script>
 
 <template>
-  <NFlex justify="center" class="mt-10 cursor-pointer" @click="handleClick">
+  <NFlex justify="center" class="mt-4 cursor-pointer" @click="handleClick">
     <n-icon size="25" :component="LogoGithub" />
     <p class="underline">作者链接</p>
   </NFlex>
