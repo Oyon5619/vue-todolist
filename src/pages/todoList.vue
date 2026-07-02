@@ -94,7 +94,7 @@ const handleKeywordClear = () => {
       <div class="text-[2rem]">待办表</div>
     </div>
     <div class="text-[0.65rem] text-cyan-400 text-center mb-4">
-      基于vue + navie ui制作.
+      基于vue + navie ui + tailwindcss制作.
     </div>
     <n-space vertical>
       <n-flex justify="center">
